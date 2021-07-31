@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 const DescriptionDetail = ({desc, text}) => {
   return (
     <li className="list-group-item">
