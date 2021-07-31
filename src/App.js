@@ -4,8 +4,6 @@ import Lists from "./components/List/List";
 import Details from "./components/Details/Details";
 import Loader from "./components/Loader/Loader";
 
-const baseURL = 'https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/hooks-context/use-effect/data/';
-
 function App() {
   const [lists, setLists] = useState([]);
   const [userID, setUserID] = useState(null);
@@ -13,9 +11,8 @@ function App() {
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
 
-
   useEffect(() => {
-    fetch(baseURL + 'users.json')
+    fetch(process.env.REACT_APP_BASE_URL + 'users.json')
       .then(response => response.json())
       .then(data => setLists(prevState => [...prevState, ...data]))
       .catch(error => setError(error.message));
@@ -26,7 +23,7 @@ function App() {
       return;
     }
     setLoader(true);
-    fetch(`${baseURL}${userID}.json`)
+    fetch(`${process.env.REACT_APP_BASE_URL}${userID}.json`)
       .then(response => response.json())
       .then(data => {
         setUserInfo(prevState => ({...prevState, ...data}))
